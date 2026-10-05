@@ -10,7 +10,16 @@ Minimal backend foundation for document ingestion:
 
 ```bash
 pip install -r requirements.txt
-export DATABASE_URL="postgresql+psycopg2://postgres@localhost:5432/document_qa"
+uvicorn app.main:app --reload
+```
+
+The default local configuration uses SQLite and creates `document_qa.db` in the
+project directory, so PostgreSQL is not required for development. To use
+PostgreSQL instead, set `DATABASE_URL` to a URL containing the password for the
+local `postgres` role before starting the API:
+
+```bash
+export DATABASE_URL="postgresql+psycopg2://postgres:<password>@localhost:5432/document_qa"
 uvicorn app.main:app --reload
 ```
 
