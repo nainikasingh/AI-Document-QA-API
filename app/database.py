@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
@@ -9,7 +12,7 @@ def _create_engine(database_url: str):
     return create_engine(database_url, connect_args=connect_args)
 
 
-DEFAULT_DATABASE_URL = "postgresql+psycopg2://postgres@localhost:5432/document_qa"
+DEFAULT_DATABASE_URL = "sqlite:///./document_qa.db"
 
 DATABASE_URL = os.getenv("DATABASE_URL", DEFAULT_DATABASE_URL)
 
